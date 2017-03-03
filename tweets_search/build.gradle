@@ -1,0 +1,55 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+}
+
+dependencies {
+    final RETROFIT_VERSION = '2.1.0'
+    final OKHTTP_VERSION = '3.6.0'
+    final JACKSON_VERSION = '2.8.7'
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    testCompile 'junit:junit:4.12'
+
+    // OkHttp3
+    compile "com.squareup.okhttp3:okhttp:$OKHTTP_VERSION"
+
+    // Retrofit2
+    compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    compile "com.squareup.retrofit2:retrofit-mock:$RETROFIT_VERSION"
+//    compile "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
+//    compile "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
+    // https://mvnrepository.com/artifact/com.squareup.retrofit/converter-jackson
+    compile "com.squareup.retrofit2:converter-jackson:$RETROFIT_VERSION"
+
+    compile "com.fasterxml.jackson.core:jackson-databind:$JACKSON_VERSION"
+    compile "com.fasterxml.jackson.core:jackson-core:$JACKSON_VERSION"
+    compile "com.fasterxml.jackson.core:jackson-annotations:$JACKSON_VERSION"
+
+    compile 'io.reactivex:rxjava:1.2.7'
+    compile 'com.artemzin.rxjava:proguard-rules:1.2.7.0'
+}
